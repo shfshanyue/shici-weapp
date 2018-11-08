@@ -7,10 +7,10 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"miniprogramRoot": "./dist/",
+	"miniprogramRoot": "dist/",
 	"compileType": "miniprogram",
 	"appid": "touristappid",
-	"projectname": "one-day",
+	"projectname": "oneday",
 	"condition": {
 		"search": {
 			"current": -1,

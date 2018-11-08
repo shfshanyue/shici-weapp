@@ -52,6 +52,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.gql$/,
+        loader: 'graphql-tag/loader',
+        include: [resolve('src')]
+      },
+      {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',

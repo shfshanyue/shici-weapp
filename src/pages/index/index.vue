@@ -1,15 +1,21 @@
 <template>
   <div class="container">
-    hello, world
+    {{ ping }}
   </div>
 </template>
 
 <script>
+import { PING } from '@/query.gql'
+
 export default {
   data () {
     return {
-      motto: 'Hello World',
-      userInfo: {}
+      ping: ''
+    }
+  },
+  apollo: {
+    ping: {
+      query: PING
     }
   }
 }

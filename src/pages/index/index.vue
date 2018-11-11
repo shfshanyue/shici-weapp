@@ -7,14 +7,14 @@
         </div>
       </div>
       <div class="title">
-        {{ phrase.title }} · {{ phrase.author }}
+        {{ phrase.title }} {{ phrase.author ? '· ' + phrase.author : '' }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { PING } from '@/query.gql'
+import { PHRASE } from '@/query.gql'
 
 export default {
   data () {
@@ -27,14 +27,17 @@ export default {
     }
   },
   apollo: {
-    ping: {
-      query: PING
+    phrase: {
+      query: PHRASE
     }
   },
   computed: {
     phrases () {
-      return this.phrase.phrase.split(/[，。！、]/)
+      return this.phrase.phrase.split(/[,，.。!！、;；]/)
     }
+  },
+  onPullDownRefresh () {
+    this.$apollo.queries.phrase.refetch({ random: true })
   }
 }
 </script>
@@ -57,7 +60,7 @@ export default {
 }
 
 .text {
-  border-left: 1px solid red;
+  border-left: 1px solid #fec;
 }
 
 .title {

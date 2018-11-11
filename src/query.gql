@@ -2,3 +2,11 @@ query PING {
   ping  
 }
 
+query PHRASE ($random: Boolean) {
+  phrase (random: $random) {
+    id
+    title
+    author
+    phrase
+  }  
+}

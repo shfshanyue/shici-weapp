@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
-    <div class="card">
+  <div class="container" @tap="tap">
+    <div class="card" @touchstart="touchstart" @touchend="touchend">
       <div class="texts">
         <div class="text" v-for="p in phrases" v-if="p" :key="p">
           {{ p }}
         </div>
       </div>
       <div class="title">
-        {{ phrase.title.length < 20 ? phrase.title : '' }} {{ phrase.author ? '· ' + phrase.author : '' }}
+        {{ phrase.title.length < 20 ? phrase.title : '' }} {{ phrase.title.length < 20 && phrase.author ? ' · ' : '' }} {{ phrase.author ? phrase.author : '' }}
       </div>
     </div>
   </div>
@@ -40,6 +40,16 @@ export default {
     this.$apollo.queries.phrase.refetch({ random: true }).then(() => {
       wx.stopPullDownRefresh()
     })
+  },
+  methods: {
+    tap (e) {
+      const { windowHeight, windowWidth } = wx.getSystemInfoSync()
+
+      // 右划
+      if (e.pageX < windowWidth && e.pageX > windowWidth * 0.66) {
+        console.log('hello, world')
+      }
+    }
   }
 }
 </script>

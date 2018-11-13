@@ -1,54 +1,36 @@
 <template>
-  <div class="container" @tap="tap">
-    <div class="card" @touchstart="touchstart" @touchend="touchend">
-      <div class="texts">
-        <div class="text" v-for="p in phrases" v-if="p" :key="p">
-          {{ p }}
-        </div>
-      </div>
-      <div class="title">
-        {{ phrase.title.length < 20 ? phrase.title : '' }} {{ phrase.title.length < 20 && phrase.author ? ' · ' : '' }} {{ phrase.author ? phrase.author : '' }}
-      </div>
+  <div class="container">
+    <picker class="calendar" mode="date" :value="date" start="2018-11-11" end="2018-11-18" @change="changeDate">
+      <div class="date" v-text="day"></div>
+      <div class="day" v-text="format"></div>
+    </picker>
+    <div class="text">遇见你，是我这辈子最幸运的事。</div>
+    <div class="footer">
+      <navigator url="/pages/poem/main" size="mini" class="button">开始阅读</navigator>
     </div>
   </div>
 </template>
 
 <script>
-import { PHRASE } from '@/query.gql'
+import dayjs from 'dayjs'
 
 export default {
   data () {
     return {
-      phrase: {
-        title: '静夜思',
-        author: '李白',
-        phrase: '举头望明月，低头思故乡。'
-      }
-    }
-  },
-  apollo: {
-    phrase: {
-      query: PHRASE
+      date: dayjs()
     }
   },
   computed: {
-    phrases () {
-      return this.phrase.phrase.split(/[,，.。!！、;；？?“”""]/)
+    day () {
+      return this.date.date()
+    },
+    format () {
+      return this.date.format('MMM.dddd')
     }
   },
-  onPullDownRefresh () {
-    this.$apollo.queries.phrase.refetch({ random: true }).then(() => {
-      wx.stopPullDownRefresh()
-    })
-  },
   methods: {
-    tap (e) {
-      const { windowHeight, windowWidth } = wx.getSystemInfoSync()
-
-      // 右划
-      if (e.pageX < windowWidth && e.pageX > windowWidth * 0.66) {
-        console.log('hello, world')
-      }
+    changeDate (e) {
+      this.date = dayjs(e.target.value)
     }
   }
 }
@@ -56,26 +38,38 @@ export default {
 
 <style scoped>
 .container {
-  padding: 60rpx 60rpx 180rpx;
-}
-
-.card {
-  background-color: #fff;
-  font-family: "楷体", "BiauKai","DFKai-SB","FZShouJinShu-S10S","FZJianZhi-M23S";
-  font-size: 1.5em;
-  writing-mode: vertical-rl;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
   padding: 20px;
 }
 
-.text {
+.date {
+  font-size: 58px; 
+  display: inline-block;
 }
 
-.title {
-  align-self: flex-end;
+.day {
+  font-style: oblique;
+  color: #8c8c8c;
+  display: inline-block;
+  padding: 0 18px;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #8c8c8c;
+}
+
+.text {
+  font-size: 36rpx;
+  font-style: oblique;
 }
 </style>

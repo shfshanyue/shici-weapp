@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "apollo-boost": "^0.1.20",
+    "dayjs": "^1.7.7",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "mpvue": "^1.0.11",

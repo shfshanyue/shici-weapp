@@ -33,11 +33,13 @@ export default {
   },
   computed: {
     phrases () {
-      return this.phrase.phrase.split(/[,，.。!！、;；]/)
+      return this.phrase.phrase.split(/[,，.。!！、;；？?]/)
     }
   },
   onPullDownRefresh () {
-    this.$apollo.queries.phrase.refetch({ random: true })
+    this.$apollo.queries.phrase.refetch({ random: true }).then(() => {
+      wx.stopPullDownRefresh()
+    })
   }
 }
 </script>

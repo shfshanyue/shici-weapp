@@ -8,7 +8,7 @@ export default {
 <style>
 .container {
   height: 100%;
-  padding: 0 20px;
+  background-color: #f8f8f8;
 }
 /* this rule will be remove */
 view {

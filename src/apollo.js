@@ -2,8 +2,6 @@ import ApolloClient from 'apollo-boost'
 import VueApollo from 'vue-apollo'
 import fetch from './fetch'
 
-const isProduction = process.env.NODE_ENV === 'production'
-
 const apolloProvider = new VueApollo({
   defaultClient: new ApolloClient({
     uri: 'https://oneday.xiange.tech/graphql',

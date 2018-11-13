@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <div class="phrase">
+    <div class="card">
       <div class="texts">
         <div class="text" v-for="p in phrases" v-if="p" :key="p">
           {{ p }}
         </div>
       </div>
       <div class="title">
-        {{ phrase.title }} {{ phrase.author ? '· ' + phrase.author : '' }}
+        {{ phrase.title.length < 20 ? phrase.title : '' }} {{ phrase.author ? '· ' + phrase.author : '' }}
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     phrases () {
-      return this.phrase.phrase.split(/[,，.。!！、;；？?]/)
+      return this.phrase.phrase.split(/[,，.。!！、;；？?“”""]/)
     }
   },
   onPullDownRefresh () {
@@ -46,10 +46,11 @@ export default {
 
 <style scoped>
 .container {
-  margin: 50rpx 30rpx;
+  padding: 60rpx 60rpx 180rpx;
 }
 
-.phrase {
+.card {
+  background-color: #fff;
   font-family: "楷体", "BiauKai","DFKai-SB","FZShouJinShu-S10S","FZJianZhi-M23S";
   font-size: 1.5em;
   writing-mode: vertical-rl;
@@ -58,11 +59,10 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px;
 }
 
 .text {
-  border-left: 1px solid #fec;
 }
 
 .title {

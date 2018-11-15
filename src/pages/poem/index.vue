@@ -1,6 +1,10 @@
 <template>
   <div class="container" @tap="tap">
     <div class="card" @touchstart="touchstart" @touchend="touchend">
+      <!-- <picker class="calendar" mode="date" :value="date" start="2018-11-11" end="2018-11-18" @change="changeDate"> -->
+      <!--   <div class="date" v-text="day">14</div> -->
+      <!--   <div class="day" v-text="format">Nov.Thursday</div> -->
+      <!-- </picker> -->
       <div class="texts">
         <div class="text" v-for="p in phrases" v-if="p" :key="p">
           {{ p }}
@@ -33,7 +37,7 @@ export default {
   },
   computed: {
     phrases () {
-      return this.phrase.phrase.split(/[,，.。!！、;；？?“”""]/)
+      return this.phrase.phrase.split(/[,，.。!！、;；？?“”"":：]/)
     }
   },
   onPullDownRefresh () {
@@ -80,6 +84,7 @@ export default {
   justify-content: space-between;
   flex-direction: column;
   padding: 20px;
+  position: relative;
 }
 
 .text {
@@ -87,5 +92,11 @@ export default {
 
 .title {
   align-self: flex-end;
+}
+
+.calendar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
 </style>

@@ -5,8 +5,14 @@ query PING {
 query PHRASE ($random: Boolean) {
   phrase (random: $random) {
     id
-    title
-    author
     phrase
+    poem {
+      id
+      title
+      author {
+        id   
+        name
+      }
+    }
   }  
 }

@@ -1,17 +1,13 @@
 <template>
   <div class="container" @tap="tap">
     <div class="card" @touchstart="touchstart" @touchend="touchend">
-      <!-- <picker class="calendar" mode="date" :value="date" start="2018-11-11" end="2018-11-18" @change="changeDate"> -->
-      <!--   <div class="date" v-text="day">14</div> -->
-      <!--   <div class="day" v-text="format">Nov.Thursday</div> -->
-      <!-- </picker> -->
       <div class="texts">
         <div class="text" v-for="p in phrases" v-if="p" :key="p">
           {{ p }}
         </div>
       </div>
       <div class="title">
-        {{ phrase.title.length < 20 ? phrase.title : '' }} {{ phrase.title.length < 20 && phrase.author ? ' · ' : '' }} {{ phrase.author ? phrase.author : '' }}
+        {{ title.length < 20 ? title : '' }} {{ title.length < 20 && authorName ? ' · ' : '' }} {{ authorName }}
       </div>
     </div>
   </div>
@@ -19,25 +15,29 @@
 
 <script>
 import { PHRASE } from '@/query.gql'
+import _ from 'lodash'
 
 export default {
   data () {
     return {
-      phrase: {
-        title: '静夜思',
-        author: '李白',
-        phrase: '举头望明月，低头思故乡。'
-      }
+      phrase: '举头望明月，低头思故乡。',
+      title: '静夜思',
+      authorName: '李白'
     }
   },
   apollo: {
     phrase: {
-      query: PHRASE
+      query: PHRASE,
+      result ({ data }) {
+        this.phrase = _.get(data, 'phrase.phrase')
+        this.title = _.get(data, 'phrase.poem.title')
+        this.authorName = _.get(data, 'phrase.poem.author.name')
+      }
     }
   },
   computed: {
     phrases () {
-      return this.phrase.phrase.split(/[,，.。!！、;；？?“”"":：]/)
+      return this.phrase.split(/[,，.。!！、;；？?“”"":：]/)
     }
   },
   onPullDownRefresh () {

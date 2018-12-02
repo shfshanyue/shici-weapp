@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/index/main",
     "pages/poem/main"
   ],
   "window": {
@@ -8,7 +7,7 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true,
+    "navigationStyle": "custom",
     "backgroundTextStyle": "dark",
     "backgroundColor": "#f8f8f8",
     "navigationBarBackgroundColor": "#f8f8f8"

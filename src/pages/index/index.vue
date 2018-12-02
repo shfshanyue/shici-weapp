@@ -38,7 +38,7 @@ export default {
 
 <style scoped>
 .container {
-  padding: 20px;
+  padding: 70px 20px 20px 20px;
 }
 
 .date {

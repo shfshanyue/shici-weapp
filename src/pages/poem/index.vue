@@ -1,13 +1,16 @@
 <template>
-  <div class="container" @tap="tap">
-    <div class="card" @touchstart="touchstart" @touchend="touchend">
-      <div class="texts">
-        <div class="text" v-for="p in phrases" v-if="p" :key="p">
-          {{ p }}
+  <div class="container">
+    <bar></bar>
+    <div class="card-container">
+      <div class="card" @touchstart="touchstart" @touchend="touchend">
+        <div class="texts">
+          <div class="text" v-for="p in phrases" v-if="p" :key="p">
+            {{ p }}
+          </div>
         </div>
-      </div>
-      <div class="title">
-        {{ title.length < 20 ? title : '' }} {{ title.length < 20 && authorName ? ' · ' : '' }} {{ authorName }}
+        <div class="title">
+          {{ title.length < 20 ? title : '' }} {{ title.length < 20 && authorName ? ' · ' : '' }} {{ authorName }}
+        </div>
       </div>
     </div>
   </div>
@@ -15,9 +18,13 @@
 
 <script>
 import { PHRASE } from '@/query.gql'
+import bar from '@/components/bar'
 import _ from 'lodash'
 
 export default {
+  components: {
+    bar
+  },
   data () {
     return {
       phrase: '举头望明月，低头思故乡。',
@@ -69,7 +76,13 @@ export default {
 
 <style scoped>
 .container {
-  padding: 60rpx 60rpx 180rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container {
+  padding: 30px;
+  height: 100%;
 }
 
 .card {
@@ -79,7 +92,7 @@ export default {
   line-height: 1.2em;
   writing-mode: vertical-rl;
   width: 100%;
-  height: 100%;
+  height: 85%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

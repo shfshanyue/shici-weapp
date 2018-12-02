@@ -2,8 +2,8 @@ query PING {
   ping  
 }
 
-query PHRASE ($random: Boolean) {
-  phrase (random: $random) {
+query PHRASE ($random: Boolean, $date: DateTime) {
+  phrase (random: $random, date: $date) {
     id
     phrase
     poem {
@@ -15,4 +15,15 @@ query PHRASE ($random: Boolean) {
       }
     }
   }  
+}
+
+query POEM ($uuid: ID!) {
+  poem (uuid: $uuid) {
+    id
+    title
+    author {
+      id   
+      name
+    }
+  }
 }

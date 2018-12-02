@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <bar></bar>
+    <bar :date="date" @change-date="changeDate"></bar>
     <div class="card-container">
       <div class="card" @touchstart="touchstart" @touchend="touchend">
         <div class="texts">
@@ -17,9 +17,10 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 import { PHRASE } from '@/query.gql'
 import bar from '@/components/bar'
-import _ from 'lodash'
 
 export default {
   components: {
@@ -29,7 +30,8 @@ export default {
     return {
       phrase: '举头望明月，低头思故乡。',
       title: '静夜思',
-      authorName: '李白'
+      authorName: '李白',
+      date: new Date()
     }
   },
   apollo: {
@@ -69,6 +71,10 @@ export default {
       if (e.pageX < windowWidth && e.pageX > windowWidth * 0.66) {
         console.log('hello, world')
       }
+    },
+    changeDate (e) {
+      this.date = e
+      this.$apollo.queries.phrase.refetch({ date: new Date(e) })
     }
   }
 }

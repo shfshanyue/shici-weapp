@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/poem/main"
+    "pages/phrase/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

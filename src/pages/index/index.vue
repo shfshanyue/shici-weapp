@@ -6,7 +6,7 @@
     </picker>
     <div class="text">遇见你，是我这辈子最幸运的事。</div>
     <div class="footer">
-      <navigator url="/pages/poem/main" size="mini" class="button">开始阅读</navigator>
+      <navigator url="/pages/phrase/main" size="mini" class="button">开始阅读</navigator>
     </div>
   </div>
 </template>

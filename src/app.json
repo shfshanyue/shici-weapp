@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/index/main",
+    "pages/phrase/main",
     "pages/poem/main"
   ],
   "window": {

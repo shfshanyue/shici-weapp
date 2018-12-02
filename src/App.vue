@@ -1,6 +1,12 @@
 <script>
 export default {
   created () {
+    const { model } = wx.getSystemInfoSync()
+    let startBarHeight = 20
+    if (model === 'iPhone X') {
+      startBarHeight = 44
+    }
+    wx.setStorageSync('startBarHeight', startBarHeight)
   }
 }
 </script>

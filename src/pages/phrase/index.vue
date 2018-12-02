@@ -2,16 +2,18 @@
   <div class="container">
     <bar :date="date" @change-date="changeDate"></bar>
     <div class="card-container">
-      <div class="card" @touchstart="touchstart" @touchend="touchend">
-        <div class="texts">
-          <div class="text" v-for="p in phrases" v-if="p" :key="p">
-            {{ p }}
+      <navigator hover-class="none" :url="'/pages/poem/main?uuid=' + poemId">
+        <div class="card" @touchstart="touchstart" @touchend="touchend">
+          <div class="texts">
+            <div class="text" v-for="p in phrases" v-if="p" :key="p">
+              {{ p }}
+            </div>
+          </div>
+          <div class="title">
+            {{ title.length < 20 ? title : '' }} {{ title.length < 20 && authorName ? ' · ' : '' }} {{ authorName }}
           </div>
         </div>
-        <div class="title">
-          {{ title.length < 20 ? title : '' }} {{ title.length < 20 && authorName ? ' · ' : '' }} {{ authorName }}
-        </div>
-      </div>
+      </navigator>
     </div>
   </div>
 </template>
@@ -31,7 +33,8 @@ export default {
       phrase: '举头望明月，低头思故乡。',
       title: '静夜思',
       authorName: '李白',
-      date: new Date()
+      date: new Date(),
+      poemId: 'qs710eeut78'
     }
   },
   apollo: {
@@ -41,6 +44,7 @@ export default {
         this.phrase = _.get(data, 'phrase.phrase')
         this.title = _.get(data, 'phrase.poem.title')
         this.authorName = _.get(data, 'phrase.poem.author.name')
+        this.poemId = _.get(data, 'phrase.poem.uuid')
       }
     }
   },
@@ -84,10 +88,11 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 .card-container {
-  padding: 30px;
+  padding: 120Px 30Px 0;
   height: 100%;
 }
 

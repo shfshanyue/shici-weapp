@@ -1,32 +1,30 @@
 <template>
-  <div>
+  <div class="title">
     <div class="start-bar" :style="{ height: startBarHeight + 'Px' }"></div>
-    <div class="title" v-text="name">
+    <div class="title-bar" v-text="name">
     </div> 
   </div>
 </template>
 
 <script>
-import dayjs from 'dayjs'
-
 export default {
   data () {
     return {
-      startBarHeight: 20,
+      startBarHeight: wx.getStorageSync('startBarHeight')
     }
   },
-  props: ['name'],
-  created () {
-    const { model } = wx.getSystemInfoSync()
-    if (model === 'iPhone X') {
-      this.startBarHeight = 44
-    }
-  }
+  props: ['name']
 }
 </script>
 
 <style scoped>
 .title {
+  position: fixed;
+  width: 100%;
+  background: #fff;
+}
+
+.title-bar {
   /* 所有机型的状态栏高度都是 44 px */
   height: 48Px;
   line-height: 48Px;

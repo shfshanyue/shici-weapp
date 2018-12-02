@@ -8,6 +8,7 @@ query PHRASE ($random: Boolean, $date: DateTime) {
     phrase
     poem {
       id
+      uuid
       title
       author {
         id   
@@ -20,7 +21,9 @@ query PHRASE ($random: Boolean, $date: DateTime) {
 query POEM ($uuid: ID!) {
   poem (uuid: $uuid) {
     id
+    uuid
     title
+    paragraphs
     author {
       id   
       name

@@ -38,6 +38,7 @@ export default {
 
 <style scoped>
 .container {
+  height: 100vh;
   padding: 70px 20px 20px 20px;
 }
 

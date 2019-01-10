@@ -59,13 +59,13 @@ export default {
     })
   },
   mounted () {
-    //  wx.loadFontFace({
-    //    family: '台湾新细明体',
-    //    source: 'url("https://oss.xiange.tech/font/%E8%87%BA%E7%81%A3%E6%96%B0%E7%B4%B0%E6%98%8E%E9%AB%94.ttf")',
-    //    success (e) {
-    //      console.log('加载成功', e)
-    //    }
-    //  })
+    wx.loadFontFace({
+      family: '台湾新细明体',
+      source: 'url("https://oss.xiange.tech/font/%E8%87%BA%E7%81%A3%E6%96%B0%E7%B4%B0%E6%98%8E%E9%AB%94.ttf")',
+      success (e) {
+        console.log('加载成功', e)
+      }
+    })
   },
   methods: {
     tap (e) {
@@ -122,10 +122,5 @@ export default {
   position: absolute;
   top: 20px;
   left: 20px;
-}
-
-@font-face {
-  font-family: "台湾新细明体";
-  src: url("https://oss.xiange.tech/font/%E8%87%BA%E7%81%A3%E6%96%B0%E7%B4%B0%E6%98%8E%E9%AB%94.ttf") format('truetype');
 }
 </style>

@@ -34,7 +34,7 @@ export default {
       title: '静夜思',
       authorName: '李白',
       date: new Date(),
-      poemId: 'qs710eeut78'
+      poemId: '4vl92j3n86o'
     }
   },
   apollo: {

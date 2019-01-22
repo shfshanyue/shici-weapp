@@ -105,7 +105,6 @@ export default {
 .feature-item.active {
   color: #111;
   background-color: #fff;
-  border-top: 1Px solid #fff;
 }
 
 h2 {

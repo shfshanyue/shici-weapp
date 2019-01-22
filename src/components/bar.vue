@@ -23,7 +23,7 @@ export default {
   computed: {
     format () {
       // TODO: 如果外边传过来的是 dayjs，则会一直刷新...
-      return dayjs(this.date).format('MMM.dddd')
+      return dayjs(this.date).format('MM.DD')
     }
   }
 }
@@ -33,6 +33,9 @@ export default {
 .bar {
   position: fixed;
   width: 100%;
+  font-size: 28Px;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .status-bar {

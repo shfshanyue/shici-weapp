@@ -16,10 +16,10 @@
       </div>
     </div>
     <div class="feature">
-      <div :class="['feature-item', { active: active === 'poem'}]" @click="setActive('poem')">文</div>  
-      <div :class="['feature-item', { active: active === 'intro'}]" @click="setActive('intro')" v-if="poem.intro">简</div>  
-      <div :class="['feature-item', { active: active === 'translation'}]" @click="setActive('translation')" v-if="poem.translation">译</div>  
-      <div :class="['feature-item', { active: active === 'appreciation'}]" @click="setActive('appreciation')" v-if="poem.appreciation">赏</div>  
+      <div :class="['feature-item', { active: active === 'poem'}]" @click="setActive('poem')">诗词</div>  
+      <div :class="['feature-item', { active: active === 'intro'}]" @click="setActive('intro')" v-if="poem.intro">简介</div>  
+      <div :class="['feature-item', { active: active === 'translation'}]" @click="setActive('translation')" v-if="poem.translation">翻译</div>  
+      <div :class="['feature-item', { active: active === 'appreciation'}]" @click="setActive('appreciation')" v-if="poem.appreciation">鉴赏</div>  
     </div>
   </div>
 </template>
@@ -65,6 +65,7 @@ export default {
 .container {
   padding: 68Px 0 0;
   background-color: #fff;
+  padding-bottom: 50Px;
 }
 
 .section {
@@ -85,7 +86,6 @@ export default {
   width: 100%;
   height: 50Px;
   background-color: #fff;
-  border-top: 1Px solid #f60;
 }
 
 .feature-item {
@@ -93,8 +93,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 1Px solid #f60;
-  color: #f60;
+  border-left: 1Px solid #c8c8c8;
+  border-top: 1Px solid #c8c8c8;
+  color: #888;
 }
 
 .feature-item:first-child {
@@ -102,8 +103,9 @@ export default {
 }
 
 .feature-item.active {
-  background-color: #f60;
-  color: #fff;
+  color: #111;
+  background-color: #fff;
+  border-top: 1Px solid #fff;
 }
 
 h2 {

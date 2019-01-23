@@ -2,8 +2,8 @@ query PING {
   ping  
 }
 
-query PHRASE ($random: Boolean, $date: DateTime) {
-  phrase (random: $random, date: $date) {
+query PHRASE ($random: Boolean, $date: DateTime, $id: ID) {
+  phrase (random: $random, date: $date, id: $id) {
     id
     phrase
     poem {

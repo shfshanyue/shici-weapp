@@ -20,4 +20,13 @@ view {
   transition: width 2s;
   box-sizing: border-box;
 }
+
+.svg {
+  width: 32Px;
+  height: 32Px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 32Px 32Px;
+}
+
 </style>

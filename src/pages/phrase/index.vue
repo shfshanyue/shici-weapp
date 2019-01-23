@@ -3,7 +3,7 @@
     <bar :date="date" @change-date="changeDate"></bar>
     <div class="card-container">
       <navigator hover-class="none" :url="'/pages/poem/main?uuid=' + poemId">
-        <div class="card" @touchstart="touchstart" @touchend="touchend">
+        <div class="card" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove">
           <div class="texts">
             <div class="text" v-for="p in phrases" v-if="p" :key="p">
               {{ p }}
@@ -84,12 +84,19 @@ export default {
     })
   },
   methods: {
-    tap (e) {
-      const { windowWidth } = wx.getSystemInfoSync()
-
-      // 右划
-      if (e.pageX < windowWidth && e.pageX > windowWidth * 0.66) {
+    touchstart (e) {
+      this.startX = e.pageX
+    },
+    touchend (e) {
+      if (this.startX - this.endX > 70) {
+        this.changeDate(this.date.getTime() + 24 * 60 * 60 * 1000)
       }
+      if (this.endX - this.startX > 70) {
+        this.changeDate(this.date - 24 * 60 * 60 * 1000)
+      }
+    },
+    touchmove (e) {
+      this.endX = e.pageX
     },
     changeDate (e) {
       this.date = new Date(e)

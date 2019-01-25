@@ -3,14 +3,16 @@
     <bar :date="date" @change-date="changeDate"></bar>
     <div class="card-container">
       <navigator hover-class="none" :url="'/pages/poem/main?uuid=' + poemId">
-        <div class="card" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove">
-          <div class="texts">
-            <div class="text" v-for="p in phrases" v-if="p" :key="p">
-              {{ p }}
+        <div :class="['card', { animate: animate }]" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove">
+          <div :class="{ animate: animate, 'animate-box': true }">
+            <div class="texts">
+              <div class="text" v-for="p in phrases" v-if="p" :key="p">
+                {{ p }}
+              </div>
             </div>
-          </div>
-          <div class="title">
-            {{ title.length < 20 ? title : '' }} {{ title.length < 20 && authorName ? ' · ' : '' }} {{ authorName }}
+            <div class="title">
+              {{ title.length < 20 ? title : '' }} {{ title.length < 20 && authorName ? ' · ' : '' }} {{ authorName }}
+            </div>
           </div>
         </div>
       </navigator>
@@ -34,15 +36,14 @@ export default {
     bar
   },
   data () {
-    const id = _.get(this, '$mp.query.id')
-    console.log(this.$mp, id)
     return {
       id: undefined,
       phrase: '举头望明月，低头思故乡。',
       title: '静夜思',
       authorName: '李白',
       date: new Date(),
-      poemId: '4vl92j3n86o'
+      poemId: '4vl92j3n86o',
+      animate: false
     }
   },
   computed: {
@@ -102,13 +103,19 @@ export default {
       this.endX = e.pageX
     },
     changeDate (e) {
-      this.date = new Date(e)
-      this.$apollo.queries.phrase.setVariables({ date: this.date })
-      this.$apollo.queries.phrase.refetch()
+      this.animate = true
+      this.$apollo.queries.phrase.setVariables({ date: new Date(e) })
+      this.$apollo.queries.phrase.refetch().then(() => {
+        this.date = new Date(e)
+        this.animate = false
+      })
     },
     random () {
+      this.animate = true
       this.$apollo.queries.phrase.setVariables({ random: true })
-      this.$apollo.queries.phrase.refetch()
+      this.$apollo.queries.phrase.refetch().then(() => {
+        this.animate = false
+      })
     }
   }
 }
@@ -140,11 +147,26 @@ export default {
   writing-mode: vertical-rl;
   width: 100%;
   height: 85%;
+  padding: 20px;
+  position: relative;
+  opacity: 1;
+  transition: all ease .5s;
+}
+
+.animate-box {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 20px;
-  position: relative;
+  width: 100%;
+  transition: all ease 3s;
+}
+
+.card.animate {
+  opacity: 0.4;
+}
+
+.animate-box.animate {
+  opacity: 0;
 }
 
 .svg-left {

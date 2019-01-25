@@ -22,11 +22,14 @@ view {
 }
 
 .svg {
-  width: 32Px;
-  height: 32Px;
+  width: 54Px;
+  height: 54Px;
+  box-shadow: 0 1Px 3Px rgba(26, 26, 26, 0.1);
+  border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 32Px 32Px;
+  background-size: 24Px 24Px;
+  background-color: #fff;
 }
 
 </style>

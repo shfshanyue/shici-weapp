@@ -77,7 +77,7 @@ export default {
       }
     })
     wx.loadFontFace({
-      family: '台湾新细明体',
+      family: 'taiwanxinxi',
       source: 'url("https://oss.xiange.tech/font/%E8%87%BA%E7%81%A3%E6%96%B0%E7%B4%B0%E6%98%8E%E9%AB%94.ttf")',
       success (e) {
         console.log('加载成功', e)
@@ -141,7 +141,7 @@ export default {
 
 .card {
   background-color: #fff;
-  font-family: "台湾新细明体";
+  font-family: "taiwanxinxi";
   font-size: 1.5em;
   line-height: 1.2em;
   writing-mode: vertical-rl;

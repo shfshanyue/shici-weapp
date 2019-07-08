@@ -4,7 +4,7 @@ import fetch from './fetch'
 
 const apolloProvider = new VueApollo({
   defaultClient: new ApolloClient({
-    uri: 'https://oneday.xiange.tech/graphql',
+    uri: 'https://shici.xiange.tech/graphql',
     fetch (uri, options) {
       const body = JSON.parse(options.body)
       // 方便调试

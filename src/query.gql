@@ -25,6 +25,7 @@ query POEM ($uuid: ID!) {
     title
     paragraphs
     intro
+    kind
     translation
     appreciation
     author {

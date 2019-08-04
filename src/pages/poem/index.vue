@@ -3,7 +3,7 @@
     <title :name="poem.title || '诗词'"></title>
     <div class="container" :style="{ 'padding-top': paddingTop + 'px' }">
       <div class="section" v-if="active === 'poem'">
-        <div class="p" v-for="p in poem.paragraphs" v-text="p" :key="p"></div>
+        <div :class="['p', { shi: poem.kind === '诗'}]" v-for="p in poem.paragraphs" v-text="p" :key="p"></div>
       </div>
       <div class="section" v-show="active === 'intro'">
         <div class="p" v-for="p in poem.intro" v-text="p" :key="p"></div>
@@ -53,6 +53,10 @@ export default {
       }
     })
   },
+  onUnload () {
+    this.poem = {}
+    this.active = 'poem'
+  },
   methods: {
     setActive (type) {
       this.active = type
@@ -76,6 +80,11 @@ export default {
 
 .p {
   margin-bottom: 0.8em;
+  text-indent: 2em;
+}
+
+.p.shi {
+  text-indent: 0;
 }
 
 .feature {
